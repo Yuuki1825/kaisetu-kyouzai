@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>【数学】状況理解とは</title>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+body { font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; line-height: 1.8; color: #333; background: #f9f9f9; }
+h1 { text-align: center; border: 2px solid #333; padding: 20px; background: #fff; font-size: 2em; }
+h2 { background: #2c5aa0; color: #fff; padding: 8px 16px; font-size: 1.4em; margin-top: 50px; }
+h3 { border-left: 4px solid #2c5aa0; padding-left: 12px; margin-top: 30px; }
+.definition-box { border: 2px solid #cc0000; border-left: 4px solid #cc0000; padding: 20px; margin: 20px 0; background: #fff; }
+.definition-box h4 { text-align: center; margin-top: 0; color: #cc0000; }
+.problem-box { border: 1px solid #999; border-top: 2px solid #2c5aa0; padding: 15px; margin: 15px 0; background: #fff; }
+.problem-header { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.problem-number { background: #2c5aa0; color: #fff; padding: 4px 12px; font-weight: bold; font-size: 1.1em; }
+.commentary { background: #f0f4ff; border-left: 3px solid #2c5aa0; padding: 12px; margin: 10px 0; }
+.note { color: #666; font-size: 0.95em; }
+.important { font-weight: bold; color: #cc0000; }
+.source { color: #888; font-size: 0.9em; text-align: right; }
+.example-box { border: 1px solid #ddd; padding: 15px; margin: 15px 0; background: #fff; border-radius: 4px; }
+.answer-box { background: #f0fff0; border: 1px solid #4caf50; padding: 15px; margin: 20px 0; }
+.answer-box h4 { color: #2e7d32; margin-top: 0; }
+.freedom { display: inline-block; background: #cc0000; color: #fff; padding: 2px 10px; font-weight: bold; border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<h1>【数学】状況理解とは</h1>
+
+<!-- ==================== 状況理解とは ==================== -->
+<h2 id="sec1">状況理解とは</h2>
+
+<div class="definition-box">
+<h4>状況理解の定義</h4>
+<p>「どれが自由に決まり、それにより他がどう一意に定まるのか」という問題の構造を理解することであり、言い換えると<span class="important">「その問題の自由度を求めること」</span>である。</p>
+</div>
+
+<p><strong>※自由度とは</strong><br>
+→ 自由に値を決めることのできる変数の数</p>
+
+<p>状況理解のツールには以下の2つがある。</p>
+<ul>
+<li>具体的な値の代入（実験）</li>
+<li>図形の成り立ちを理解しながらの状況図示</li>
+</ul>
+
+<!-- ==================== 1. 具体的な値の代入（実験） ==================== -->
+<h2 id="sec2">1　具体的な値の代入（実験）</h2>
+
+<p>以下の問題を例にとる。</p>
+
+<div class="problem-box">
+<p class="source">出典：広島大</p>
+<p>(1) \(a\) と \(b\) を互いに素な自然数とし、自然数 \(n\) に対し、</p>
+<p>\[\frac{1}{n+1} < \frac{b}{a} < \frac{1}{n}\]</p>
+<p>が成り立つとする。互いに素な自然数 \(c, d\) により</p>
+<p>\[\frac{b}{a} - \frac{1}{n+1} = \frac{d}{c}\]</p>
+<p>と表すとき、\(d < b\) となることを示せ。</p>
+</div>
+
+<p>問題文が、\(a, b, c, d, n\) で構成されており意味が分かりづらい。</p>
+
+<p>そこで<strong>「具体的な値の代入」</strong>により <span class="important">どれを決めればどう他が一意に定まるのか</span> を明らかにしていく。</p>
+
+<p>何に具体的な値を代入すればいいか、一見分からないかもしれませんが、その場合は色々試してみる。</p>
+
+<div class="commentary">
+<p>最終的には以下のような実験ができるとよい。</p>
+<p>このように<strong>「\(a, b\) を決めたら他の値はすべて一意に定まる」</strong>ということが分かる。</p>
+<p>これが<span class="important">状況理解を達成した状態</span>である。</p>
+<p>この時、この問題は <span class="freedom">自由度 2</span> である。（\(a\) と \(b\) は自由に決めることができるが、\(a\) と \(b\) を決めたら他の値は一意に定まるから）</p>
+</div>
+
+<!-- ==================== 2. 図形の成り立ちを理解しながらの状況図示 ==================== -->
+<h2 id="sec3">2　図形の成り立ちを理解しながらの状況図示</h2>
+
+<p>以下の問題を例にとる。</p>
+
+<div class="problem-box">
+<p class="source">2015年 東大文系数学 第3問</p>
+<p>\(\ell\) を座標平面上の原点を通り傾きが正の直線とする。さらに、以下の3条件 (i), (ii), (iii) で定まる円 \(C_1, C_2\) を考える。</p>
+<p>(i) 円 \(C_1, C_2\) は2つの不等式 \(x \geq 0\), \(y \geq 0\) で定まる領域に含まれる。</p>
+<p>(ii) 円 \(C_1, C_2\) は直線 \(\ell\) と同一点で接する。</p>
+<p>(iii) 円 \(C_1\) は \(x\) 軸と点 \((1, 0)\) で接し、円 \(C_2\) は \(y\) 軸と接する。</p>
+<p>円 \(C_1\) の半径を \(r_1\)、円 \(C_2\) の半径を \(r_2\) とする。\(8r_1 + 9r_2\) が最小となるような直線 \(\ell\) の方程式と、その最小値を求めよ。</p>
+</div>
+
+<p>このように、<strong>「どの点を決めればこの点が決まり、その点とこの点を結んだ直線とこの直線の交点により次の点が決まり、…」</strong>のように、各点や直線はどのように位置が定まっているかを理解することが必要になる。仮に図が与えられていたとしても自分で書き直し、図形の成り立ちを理解することが必要になる。</p>
+
+<div class="commentary">
+<p>ちなみにこの問題の自由度は <span class="freedom">自由度 1</span> となる。（自由に決められるのは直線 \(\ell\) の傾きのみ）</p>
+<p>そのため、この問題は最終的には1変数関数（あるいは2変数関数の制約式1つ）などの最大最小になる帰着まで見えてくる。</p>
+</div>
+
+<!-- ==================== 3. 自由度を考える練習問題 ==================== -->
+<h2 id="sec4">3　自由度を考える練習問題</h2>
+
+<p>以下の問題における自由度を求めてください。</p>
+<p>手を動かしてもらって構いません。</p>
+<p class="note">解答は最後にまとめて掲載しています。<br>※すべて演習教材からの掲載です。</p>
+
+<!-- 練習問題① -->
+<h3>①</h3>
+<div class="problem-box">
+<div class="problem-header"><span class="problem-number">第1問</span></div>
+<p>平面上に三角形 \(ABC\) があり、\(CA = 1\), \(AB = \sqrt{5}\), \(BC = 2\) である。また、三角形 \(ABC\) と合同な三角形 \(DEF\) があり、\(FD = CA\), \(DE = AB\), \(EF = BC\) である。三角形 \(DEF\) が次の3つの条件 (i), (ii), (iii) を満たしながら動く。</p>
+<p>(i) \(E\) は辺 \(AB\)（両端は除く）上にある。</p>
+<p>(ii) \(C\) は辺 \(EF\)（両端は除く）上にある。</p>
+<p>(iii) 辺 \(CA\) と辺 \(DE\) は交点をもつ。</p>
+<p>辺 \(CA\) と辺 \(DE\) の交点を \(G\) とするとき、線分 \(AG\) の長さの最大値を求めよ。</p>
+</div>
+
+<!-- 練習問題② -->
+<h3>②</h3>
+<div class="problem-box">
+<div class="problem-header"><span class="problem-number">第4問</span></div>
+<p>\(f(x) = x^3 - 3x\) とする。\(-2 < p < q < 2\) を満たす実数 \(p, q\) に対して、実数 \(y\) の集合 \(I\) を</p>
+<p>\[I = \{y \mid p \leq y \leq q\}\]</p>
+<p>とする。さらに、\(f(x)\) が \(I\) に属するような実数 \(x\) の集合を \(D\) とする。つまり、</p>
+<p>\[D = \{x \mid p \leq f(x) \leq q\}\]</p>
+<p>と定める。</p>
+<p>実数 \(p, q\) が \(-2 < p < q < 2\) を満たして動くとき、\(I\) の長さ \(l(I)\), \(D\) の長さ \(l(D)\) について、比 \(\displaystyle\frac{l(I)}{l(D)}\) のとりうる値の範囲を求めよ。</p>
+<p class="note">ただし、実数の集合 \(S\) が、共通部分のないいくつかの区間からなるとき、\(S\) の長さ \(l(S)\) は、各区間の長さの和とする。<br>
+例えば、\(S = \{x \mid 1 \leq x \leq 2\} \cup \{x \mid 3 \leq x \leq 5\}\) ならば、\(l(S) = (2 - 1) + (5 - 3) = 3\) である。</p>
+</div>
+
+<!-- 練習問題③ -->
+<h3>③</h3>
+<div class="problem-box">
+<div class="problem-header"><span class="problem-number">[3]（35点）</span></div>
+<p>斜辺の長さが1である直角三角形 \(ABC\) の内心を \(I\) とする。\(|AI|^2 + |BI|^2 + |CI|^2\) の最小値を求めよ。</p>
+</div>
+
+<!-- 練習問題④ -->
+<h3>④</h3>
+<div class="problem-box">
+<p class="source">[1981年 一橋大]</p>
+<p>放物線 \(y = a(1 - x^2)\) と \(x\) 軸で囲まれる範囲にあり、原点で \(x\) 軸に接する円の半径の最大値を求めよ。ただし、\(a > 0\) とする。</p>
+</div>
+
+<!-- 練習問題⑤ -->
+<h3>⑤</h3>
+<div class="problem-box">
+<div class="problem-header"><span class="problem-number">[2]</span></div>
+<p>\(O\) を中心とする半径 \(1, 2\) の2円をそれぞれ \(C_1, C_2\) とし、\(C_1\) の直径 \(PQ\) をとり、\(C_2\) 上に点 \(A\) をとる。直線 \(AP, AQ\) と \(C_2\) との点 \(A\) 以外の交点をそれぞれ \(R, S\) とするとき、点 \(A\)、直径 \(PQ\) の位置によらず</p>
+<p>\[\frac{AP}{PR} + \frac{AQ}{QS}\]</p>
+<p>の値は一定であることを示せ。</p>
+</div>
+
+<!-- 練習問題⑥ -->
+<h3>⑥</h3>
+<div class="problem-box">
+<p>\(xy\) 平面の放物線 \(y = x^2\) 上の3点 \(P, Q, R\) が次の条件をみたしている。</p>
+<p>\(\triangle PQR\) は一辺の長さ \(a\) の正三角形であり、点 \(P, Q\) を通る直線の傾きは \(\sqrt{2}\) である。</p>
+<p>このとき、\(a\) の値を求めよ。</p>
+</div>
+
+<!-- ==================== 解答 ==================== -->
+<h2 id="answers">解答</h2>
+
+<div class="answer-box">
+<h4>練習問題の自由度</h4>
+<p>① <span class="freedom">自由度 1</span></p>
+<p>② <span class="freedom">自由度 2</span></p>
+<p>③ <span class="freedom">自由度 1</span></p>
+<p>④ <span class="freedom">自由度 0</span></p>
+<p>⑤ <span class="freedom">自由度 1</span></p>
+<p>⑥ <span class="freedom">自由度 0</span></p>
+</div>
+
+</body>
+</html>

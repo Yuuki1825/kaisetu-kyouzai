@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>数学教材集</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', sans-serif; background: #f0f2f5; color: #333; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px 20px; }
+h1 { font-size: 2em; margin-bottom: 12px; }
+.subtitle { color: #666; margin-bottom: 40px; font-size: 0.95em; }
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: 900px; width: 100%; }
+.card { background: #fff; border-radius: 10px; padding: 28px 24px; text-decoration: none; color: #333; box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: transform 0.15s, box-shadow 0.15s; border-left: 5px solid; }
+.card:hover { transform: translateY(-4px); box-shadow: 0 6px 20px rgba(0,0,0,0.12); }
+.card h2 { font-size: 1.25em; margin-bottom: 8px; }
+.card p { font-size: 0.88em; color: #666; line-height: 1.6; }
+.card:nth-child(1) { border-color: #2c5aa0; }
+.card:nth-child(2) { border-color: #cc0000; }
+.card:nth-child(3) { border-color: #e67e22; }
+.card:nth-child(4) { border-color: #27ae60; }
+.card:nth-child(1) h2 { color: #2c5aa0; }
+.card:nth-child(2) h2 { color: #cc0000; }
+.card:nth-child(3) h2 { color: #e67e22; }
+.card:nth-child(4) h2 { color: #27ae60; }
+</style>
+</head>
+<body>
+<h1>数学教材集</h1>
+<p class="subtitle">初等写像研究会 解説教材</p>
+<div class="cards">
+  <a class="card" href="定石集.html">
+    <h2>定石集 FGver</h2>
+    <p>頻出テーマ16分野の定石と例題101問。各問に定石タグ付き解答を掲載。</p>
+  </a>
+  <a class="card" href="状況理解.html">
+    <h2>状況理解</h2>
+    <p>問題の状況を正しく把握するための考え方と演習。</p>
+  </a>
+  <a class="card" href="IA_細かい定石リスト.html">
+    <h2>IA 細かい定石リスト</h2>
+    <p>数学IAの細かい定石・公式・テクニック集。</p>
+  </a>
+  <a class="card" href="IIB_細かい定石リスト.html">
+    <h2>IIB 細かい定石リスト</h2>
+    <p>数学IIBの細かい定石・公式・テクニック集。</p>
+  </a>
+</div>
+</body>
+</html>

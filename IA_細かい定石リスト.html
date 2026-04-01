@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IA 細かい定石リスト</title>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+body { font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; line-height: 1.8; color: #333; background: #f9f9f9; }
+h1 { text-align: center; font-size: 2em; margin-bottom: 10px; }
+h2 { background: #2c5aa0; color: #fff; padding: 8px 16px; font-size: 1.4em; margin-top: 50px; text-align: center; }
+h3 { border-left: 4px solid #2c5aa0; padding-left: 12px; margin-top: 25px; font-size: 1.1em; }
+.intro { background: #fff; border: 1px solid #ddd; padding: 15px; margin: 20px 0; }
+.item { margin: 15px 0; padding: 10px 0; }
+.sub { margin-left: 20px; }
+.note { color: #666; font-size: 0.95em; }
+.important { font-weight: bold; color: #cc0000; }
+.tetsusoku { background: #f0f4ff; border-left: 3px solid #2c5aa0; padding: 10px 15px; margin: 10px 0; }
+.example-box { border: 1px solid #999; padding: 12px; margin: 10px 0; background: #fff; }
+.ref-link { color: #2c5aa0; word-break: break-all; }
+ul.plain { list-style: none; padding-left: 10px; }
+ul.plain li::before { content: "・"; }
+.fig { text-align: center; margin: 15px 0; }
+.fig img { max-width: 100%; height: auto; border: 1px solid #ddd; border-radius: 4px; }
+.fig-inline { display: inline-block; vertical-align: top; margin: 5px 10px; text-align: center; }
+.fig-inline img { max-width: 200px; height: auto; }
+.fig-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin: 15px 0; }
+.fig-row .fig-inline img { max-width: 220px; }
+</style>
+</head>
+<body>
+
+<h1>★ IA 細かい定石リスト</h1>
+
+<div class="intro">
+<p><strong>※細かい定石リストとは</strong></p>
+<p>基本的には青チャートやFGに載っているものが多い。言葉で抽象化して理解することで実際に問題を解く際の「使える知識」として整理できているかの確認になる（FG補助教材と同じ役割）。また、網羅的問題集に載っていないが入試に出るので身につけておきたい典型知識も掲載している。</p>
+<p>掲載事項の基準としては「知識として覚えておかないといけない要素が強い」ものである。網羅的問題集の中には基本をきちんと理解していてもほぼほぼ初見では思い付かない典型手法も多く存在するので、特にそういった要素の強いものをピックアップしている。</p>
+</div>
+
+<!-- ==================== 整数 ==================== -->
+<h2 id="seisuu">§ 整数</h2>
+
+<p>基本方針…まずは実験から</p>
+<p>①因数分解で積の形に…定数項無視してゴリ押したり、平方完成したり。特にn乗±n乗、2乗の差が頻出</p>
+<p>②不等式で範囲の絞り込み…文字単位から式全体まで。多角的に考察。</p>
+<div class="example-box">
+<p>（例題：\(m\) を自然数として \(m^3 + 3m^2 + 2m + 6\) がある自然数の3乗となる \(m\) は？<br>
+答え：<a class="ref-link" href="https://youtu.be/qA_f8PtagCk?si=2ImaKqRHe1wsALP6">https://youtu.be/qA_f8PtagCk?si=2ImaKqRHe1wsALP6</a>）</p>
+</div>
+<p>③余り(mod)や倍数に着目</p>
+
+<h3>◎素数 \(p\) の扱い</h3>
+<p>① \(p =\)（整数）\(\times\)（整数）と変形し、素数 \(p\) の約数は \(\pm 1, \pm p\) しかないことを利用</p>
+<p>② \(p\) は \(1, 2, 3, \ldots, p-1\) のすべてと互いに素</p>
+<p>③ 3以上の素数は奇数（偶数は2のみ）</p>
+
+<h3>◎最大公約数を求める</h3>
+<p>→ユークリッドが第一選択→互いに素を示すときもユークリッド</p>
+
+<h3>◎余り</h3>
+<p>→周期性を利用が多い（証明は帰納法を用いる）</p>
+<p class="note">※自然数の累乗を、ある自然数で割った余りを考える時は二項定理が有効なことがある<br>
+例：\(4^m = (3+1)^m\) として二項定理で展開すれば \(4^m \equiv 1 \pmod{3}\) が示せる</p>
+
+<h3>◎ガウス記号の扱い</h3>
+<p>①グラフを描く</p>
+<p>②\([x] \leq x < [x] + 1 \Leftrightarrow x - 1 < [x] \leq x\) を用いて不等式評価</p>
+<p>③\(x = [x] + \alpha\)（\(0 \leq \alpha < 1\)）とおく</p>
+<p>④\([x]\) は整数である→\([x] = m\) などと置き直すと見やすいことも</p>
+<p>⑤\([f(n)]\) は、\(0 < y_n \leq f(n)\) を満たす格子点の個数とみて、グラフを用いて考察する。</p>
+<p>⑥\(n\) を整数として \([x + n] = [x] + n\)</p>
+
+<h3>◎常に整数をとる多項式（ここではk次式とおく）</h3>
+<p>① \(f(0)\) が整数かつ階差 \(f(n+1) - f(n)\) が常に整数</p>
+<p>② 必要から十分へ<br>
+…「連続するk+1個の整数 \(n\) に対して \(f(n)\) が整数⇒整数多項式」という事実を用いて、実験はk+1個の値でやるのがよい</p>
+<p>詳しくは以下<br>
+<a class="ref-link" href="https://examist.jp/mathematics/integer/seisutitakousiki/">https://examist.jp/mathematics/integer/seisutitakousiki/</a></p>
+
+<h3>◎整数解を1つみつける方法</h3>
+<p>→ユークリッドよりもmodを使った方がはやい</p>
+<p>詳しくは以下<br>
+<a class="ref-link" href="https://youtu.be/r0wRwNj_g58?si=WfSbpiVqM9cJKUb9">https://youtu.be/r0wRwNj_g58?si=WfSbpiVqM9cJKUb9</a></p>
+
+<h3>◎整数解をもつ</h3>
+<p>（例：\(x^2 + (2m+5)x + (m+3) = 0\) が整数解をもつような整数 \(m\) をすべて求めよ）</p>
+<p>①\(\alpha, \beta\) とおいて、解と係数の関係を利用（m消去）</p>
+<p>②因数分解を（強引に）する→低次の文字について整理して共通因数を無理やり作る</p>
+<p>③整数解を \(\alpha\) とおいてmについて解く→mが整数なら条件絞れる</p>
+<p>④整数解を \(\alpha\) とおいて \(\alpha\) について解く（解の公式で）→ルートの中身が平方数</p>
+<p>⑤「整数解なら実数解」なので、判別式 \(D \geq 0\) から絞る。<br>
+⇒どんな場合（有理数解など）も絞ることがほとんど。</p>
+
+<h3>◎文字を含む式の大小関係の証明</h3>
+<p>→適当な値を代入して検討をつけてから始める</p>
+
+<h3>◎連続する2つの数</h3>
+<p>→互いに素であることを意識（問題に出てきた時に忘れがち）</p>
+
+<h3>◎n進数の数字</h3>
+<p>→「各桁の数字はn−1以下」に注意する</p>
+
+<h3>◎「〜の倍数であることを示す」ときに想起したいこと</h3>
+<p>①困難の分割<br>
+例：30の倍数を示す→2、3、5の倍数を示せばよい</p>
+<p>②1回くくる<br>
+例：\(2n^3 + 9n^2 + 13n\) が3の倍数となることを示す<br>
+→\(3(n^3 + 3n^2 + 4n) - n^3 + n\) とすれば、以降 \(-n^3 + n\) についてのみ考えればよい</p>
+<p>③「常に〜の倍数になる多項式」を利用して次数の高い方から順次消していく<br>
+上と同じ例の場合：<br>
+→\(n(n+1)(n+2) = n^3 + 3n^2 + 2n\) を使って<br>
+\(2n^3 + 9n^2 + 13n = 2n(n+1)(n+2) + 3n^2 + 9n\) と変形する</p>
+<p>④mod の剰余によって分類し尽くす（全称命題にも同様の記載があります）</p>
+<p>⑤二項定理を利用する（特にn乗に対して）</p>
+<p>⑥数学的帰納法（全称命題と同じことです）</p>
+
+<h3>◎\(\displaystyle\frac{8a+8}{a^2+4a+12}\) が整数となる \(a\) の値</h3>
+<p>→分母≧分子 で範囲を絞る</p>
+<p class="note">※これは本来は実験を通して自分で気付きたい方針ですが、あまりに頻出なので覚えておく価値があるということです。</p>
+
+<h3>◎kで割った余りが等しい</h3>
+<p>→「差がkの倍数」と処理する</p>
+<p class="note">※同様に、「小数部分が等しい」→「差が整数」と処理する</p>
+
+
+<!-- ==================== 数と式 ==================== -->
+<h2 id="suutoshiki">§ 数と式</h2>
+
+<h3>◎因数分解（おさえておきたいもの）</h3>
+<p>●原則は「最低次の文字について整理する」</p>
+<ul class="plain">
+<li>置き換えで工夫</li>
+<li>平方完成…平方の差を作る</li>
+<li>複二次式…①\(x^4\)の項と定数項で平方完成　②\(x^4\)の項と\(x^2\)の項で平方完成</li>
+<li>\(x^3 + y^3 + z^3 - 3xyz = (x+y+z)(x^2+y^2+z^2-xy-yz-zx)\)</li>
+<li>解の公式を用いる</li>
+</ul>
+
+<h3>◎2次関数の設定（\(a \neq 0\)）</h3>
+<p>①\(y = ax^2 + bx + c\)</p>
+<p>②\(y = a(x-p)^2 + q\)</p>
+<p>③\(y = a(x-\alpha)(x-\beta)\)</p>
+
+<h3>◎不等式の共通範囲の存在条件</h3>
+<p>→\(a < x < b\), \(c < x < d\) を満たす \(x\) が存在する条件は<br>
+「\(a < d\) かつ \(c < b\)」</p>
+
+<h3>◎2次、3次関数の最大最小</h3>
+<p>→ 候補（区間の端点、極値）を大小比較する（グラフで）</p>
+
+<h3>◎解の配置（省略）</h3>
+<p>←FGや青チャートで確認できる</p>
+<p class="note">※なんでもかんでも判別式・軸・境界を考えればいいと捉えるのではなく、例えば「正の相異なる2つの実数解」なら「\(D > 0, \alpha + \beta > 0, \alpha\beta > 0\)」と処理すればいいように最も簡単なやり方を意識する。</p>
+
+<h3>◎絶対値付き方程式</h3>
+<p>→場合分けで外すor図示（対称性を使えば早い）</p>
+<p>→2つ以上絶対値を含むものは折れ線グラフになるので最大最小を求める際は傾きだけ考えればよい</p>
+<p class="note">※絶対値の外すときは場合分けしないやり方が望ましい</p>
+<p>\(|X| = |Y| \Leftrightarrow X = \pm Y\)</p>
+<p>\(|X| < Y \Leftrightarrow -Y < X < Y\)</p>
+<p>\(|X| > Y \Leftrightarrow X < -Y,\; Y < X\)</p>
+
+<h3>◎対称性のある式の連立</h3>
+<p>（例：\(x = y^2 + k\), \(y = x^2 + k\)）</p>
+<p>→対称性を崩さないように、足したり引いたりする（文字消去ではなく）。</p>
+
+<h3>◎次数下げ</h3>
+<p>→2種類ある（"地道"or"一気に"）</p>
+<p>"地道"…\(\alpha^2 = \alpha + 1\) のような関係式を利用して一つずつ次数を下げていく</p>
+<p>"一気に"…値を求めたい式を \(\alpha^2 - \alpha - 1\) で割り、余りに代入する</p>
+
+<h3>◎比例式→=kとおく</h3>
+<div class="example-box">
+<p>※比例式の例</p>
+<div class="fig"><img src="images_1a/img_01_p06.jpg" alt="比例式の例題"></div>
+</div>
+
+<h3>◎サイクリックな式→辺々足す</h3>
+<p>サイクリックな式の例：\(\begin{cases} x+y=1 \\ y+z=2 \\ z+x=3 \end{cases}\)</p>
+
+<h3>◎分数式→次数下げ（分母の次数＞分子の次数にする）が原則</h3>
+
+<h3>◎整式の割り算</h3>
+<p>→初手は必ず立式から</p>
+<ul class="plain">
+<li>剰余の定理を使う（たとえ虚数であっても代入→複素数の相等）</li>
+<li>\((x-a)^n\) で割った余りを求めるとき→微分して条件式を増やす</li>
+<li>上手く繋げて立式するパターン</li>
+</ul>
+<div class="example-box">
+<p>（例：\(f(x)\) は \(x-1\) で割ると余り3、\(x^2+x+1\) で割ると余りは \(4x+5\) である。\(f(x)\) を \(x^3-1\) で割った余りを求めよ。）</p>
+<p>⇒立式は設定する文字を少なくする。</p>
+</div>
+
+<h3>◎恒等式の扱い</h3>
+<p>①係数比較</p>
+<p>②数値代入</p>
+<p>③恒等式は微分しても恒等式</p>
+<p>④\((x-p)\) で展開…\(x \to (x-p) + p\)</p>
+
+<h3>◎整式を含む方程式</h3>
+<p>①最高次を \(ax^m\) として代入</p>
+<p>②\(f(x) = ax^m + bx^{m-1} + cx^{m-2} + \ldots\) とおいて代入</p>
+
+<h3>◎共通解の問題</h3>
+<p>①まずは普通に解く（普通に因数分解から解が求まる場合がある）</p>
+<p>②無理なら共通解を \(\alpha\) とおいて代入し、得られた2式から因数分解を目指す（最高次を消去など）</p>
+<p>③その後必要条件から絞り込み、十分条件を確認する</p>
+
+<h3>◎整方程式の解の扱い</h3>
+<p>→①解と係数　②次数下げ　③因数分解 をおさえておく。</p>
+
+<h3>◎\(x^2 \pm x + 1\) には敏感に</h3>
+<p>→\(x^3 - 1 = (x-1)(x^2+x+1)\), \(x^3 + 1 = (x+1)(x^2-x+1)\) の利用をすぐ想起できるようにしておきたい</p>
+<div class="example-box">
+<p>〈例題〉 \((x^{100}+1)^{100} + (x^2+1)^{100} + 1\) は \(x^2+x+1\) で割り切れるか。</p>
+</div>
+
+<h3>◎「判別式」「解の公式」「共役の複素数も解になる」</h3>
+<p>→"実数係数のときのみ"であることに注意</p>
+
+<h3>◎\((a + b\sqrt{c})^n\) をみたら</h3>
+<p>→\((a - b\sqrt{c})^n\) の活用を考える（具体的な利用法は東大2017年文理第四問参照）</p>
+
+<h3>◎異なる2数の和</h3>
+<p>\(\displaystyle\to \frac{1}{2}\left\{\left(\sum_{k=1}^{n} k\right)^2 - \sum_{k=1}^{n} k^2\right\}\)</p>
+
+<h3>◎\(a^2 + b^2 = 0\)</h3>
+<p>→\(a = b = 0\)<br>
+これを利用することも稀にある。</p>
+
+<h3>◎3次、4次方程式を解かないといけない時</h3>
+<p>①因数分解…代入して0になるものを探す</p>
+<p>②置き換えによって2次方程式に帰着</p>
+<p>③特殊な形のもの（相反方程式、複2次式）</p>
+<p>④誘導に乗る場合</p>
+
+<h3>◎\(f(f(x)) = x\) は \(f(x) - x\) で因数分解できる</h3>
+
+
+<!-- ==================== 図形 ==================== -->
+<h2 id="zukei">§ 図形</h2>
+
+<h3>◎\(S = \displaystyle\frac{1}{2}lm\sin\theta\) という面積公式を覚えておく</h3>
+<div class="fig"><img src="images_1a/img_02_p09.jpg" alt="四角形の面積公式 S=1/2 lm sinθ（説明）"></div>
+<div class="fig"><img src="images_1a/img_03_p09.jpg" alt="四角形の面積公式 S=1/2 lm sinθ（証明）"></div>
+
+<div class="tetsusoku">
+<p><strong>[鉄則 立体図形の扱い]</strong><br>
+→ 対称面で切り、平面で考察する</p>
+</div>
+
+<h3>◎3辺 \(a, b, c\) の長さが与えられたときの三角形の面積の求め方</h3>
+<p>①\(a, b, c\) から余弦定理で \(\cos C\) を求める</p>
+<p>②\(\cos C\) から \(\sin C\) を求める</p>
+<p>③\(S = \displaystyle\frac{1}{2}ab\sin C\)</p>
+<p class="note">※ヘロンの公式でも求まる</p>
+
+<h3>◎三角形の形状決定</h3>
+<p>→辺だけ（角度だけ）の式に統一…正弦、余弦を用いて</p>
+
+<h3>◎円に内接する四角形の扱い</h3>
+<ul class="plain">
+<li>対角線の長さを2通りの余弦で表す（正弦で表すこともある）</li>
+<li>\(a : b = cd : ef\)</li>
+<li>\(xy = ac + bd\)（トレミーの定理）…上級問題精講IA IIBの203を参照</li>
+</ul>
+
+<h3>◎3辺の長さが等しい"三脚型"の四面体</h3>
+<p>→垂線降ろせば外心</p>
+<div class="fig"><img src="images_1a/img_04_p09.jpg" alt="三脚型の四面体と外心"></div>
+
+<h3>◎ひし形を折り曲げてできる四面体</h3>
+<div class="fig"><img src="images_1a/img_06_p10.jpg" alt="ミニ講座4 ひし形を折り曲げてできる四面体"></div>
+
+<h3>◎共通接線の長さ</h3>
+<p>共通外接線の長さ：\(\text{AB} = \text{OH} = \sqrt{\text{OO'}^2 - (R-r)^2} = \sqrt{d^2 - (R-r)^2}\)</p>
+<p>共通内接線の長さ：\(\text{CD} = \text{OH} = \sqrt{\text{OO'}^2 - (R+r)^2} = \sqrt{d^2 - (R+r)^2}\)</p>
+<div class="fig"><img src="images_1a/img_05_p10.jpg" alt="共通接線の長さ（外接線・内接線）"></div>
+
+<h3>◎正五角形の対角線の長さを求めるとき</h3>
+<p>→相似な三角形に注目</p>
+<div class="fig"><img src="images_1a/img_11_p11.jpg" alt="正五角形の対角線を求める（相似な三角形）"></div>
+
+<h3>◎立体の計量に有効な埋め込み</h3>
+<ul class="plain">
+<li>立方体の中に正四面体</li>
+<li>立方体の中に正八面体</li>
+<li>正八面体の中に立方体</li>
+<li>正四面体の中に正八面体</li>
+</ul>
+<div class="fig-row">
+<div class="fig-inline"><img src="images_1a/img_07_p11.jpg" alt="立方体の中に正四面体（体積1/3）"><p class="note">立方体→正四面体</p></div>
+<div class="fig-inline"><img src="images_1a/img_08_p11.jpg" alt="立方体の中に正八面体（体積1/6）"><p class="note">立方体→正八面体</p></div>
+<div class="fig-inline"><img src="images_1a/img_09_p11.jpg" alt="正八面体の中に立方体"><p class="note">正八面体→立方体</p></div>
+<div class="fig-inline"><img src="images_1a/img_10_p11.jpg" alt="正四面体の中に正八面体"><p class="note">正四面体→正八面体</p></div>
+</div>
+
+<h3>◎立体図形の共通部分</h3>
+<p>→各面における交点に着目する</p>
+
+<h3>◎2平面のなす角とは</h3>
+<p>→「各平面上に、交線に垂直に引いた2直線のなす角」</p>
+
+<h3>◎直線に関して対称</h3>
+<p>→「2点の中点が直線上」かつ「2点を結んだ直線と対称線が垂直」</p>
+
+<h3>◎極線</h3>
+<p>→求め方とその結果を覚えておく</p>
+<div class="fig"><img src="images_1a/img_12_p12.jpg" alt="極線（FG重要例題103 円の2接点を通る直線）"></div>
+
+<h3>◎三角形の一辺を表すとき</h3>
+<p>→余弦を使うよりも正弦を使って表すのが優先</p>
+
+<h3>◎円上の点を置く時→どう置くかで全然計算量違う</h3>
+<p>①\((x, y)\) とおく（→円の方程式が条件式）</p>
+<p>②\((\cos\theta, \sin\theta)\) とおく（→扱いやすいことが多い）</p>
+<p class="important">【結論】必ず②を選ぶべし</p>
+
+<h3>◎角の2等分線の求め方</h3>
+<p>①2直線との距離が等しい点Pの軌跡を求める</p>
+<p>②ベクトルの利用<br>
+→\(|\vec{s}| = |\vec{t}|\) とすると2等分線の方向は \(\vec{s} \pm \vec{t}\)（細かい定石リストIIB参照）</p>
+
+<h3>◎円の弦の長さ、球の断面の半径の長さ</h3>
+<p>→半径、中心と直線（平面）の距離を使って三平方から求める</p>
+<div class="fig"><img src="images_1a/img_13_p13.jpg" alt="円の弦の長さ（半径r、距離d、弦の半分l）"></div>
+
+<h3>◎円と直線が接する</h3>
+<p>→円の中心と直線の距離が半径</p>
+
+<h3>◎反転</h3>
+<p>→グラフの平行移動と同じ考え</p>
+<p>①変換前の \((x, y)\) を、変換後の \((X, Y)\) を用いて表す</p>
+<p>②\((x, y)\) の満たす式に代入し、\((X, Y)\) の関係式を求める</p>
+
+<h3>◎直線と平面が垂直を示す</h3>
+<p>→平面上の2直線と垂直であることを言う</p>
+
+<h3>◎傍接円の半径の求め方</h3>
+<p>→面積を使う</p>
+<div class="fig"><img src="images_1a/img_14_p13.jpg" alt="傍接円の半径の求め方（面積利用）"></div>
+
+<h3>◎等面四面体</h3>
+<p>→直方体を考える</p>
+<div class="fig"><img src="images_1a/img_15_p14.jpg" alt="等面四面体は直方体に埋め込むことができる"></div>
+<div class="fig"><img src="images_1a/img_16_p14.jpg" alt="等面四面体の具体例（早稲田大）"></div>
+
+<h3>◎正弦定理の応用</h3>
+<p>→\(a : b : c = \sin A : \sin B : \sin C\)</p>
+
+<h3>◎「一定角」ときたら</h3>
+<p>→円周角になりうる</p>
+
+<h3>◎外接する円の性質</h3>
+<div class="fig"><img src="images_1a/img_17_p14.jpg" alt="外接する円の性質（∠STU=90°, SM=MT=MU, SU=2√r1r2）"></div>
+
+<h3>◎立体の表面での最短経路を求める問題</h3>
+<p>→展開図を使う</p>
+
+<h3>◎線分の長さの表し方</h3>
+<p>→傾きを用いて表す（三平方の定理を使って）</p>
+
+<h3>◎一度解いておきたいやつ（図形問題でよくあるtanの使い方）</h3>
+<p>→2018年東北大理系数学第4問(1)</p>
+<div class="fig"><img src="images_1a/img_18_p15.jpg" alt="図形問題でよくあるtanの使い方（FG例題）"></div>
+
+<h3>◎角の2等分線の長さ</h3>
+<p>→2通りのやり方を知っておく。FGの例題132と例題133を参照。</p>
+
+<h3>◎空間図形の扱いが不慣れな人</h3>
+<p>→FG例題137はいい確認になる</p>
+
+<h3>◎境界線に対して同じ側・反対側</h3>
+<p>→正領域・負領域の考え方が利用できる（FG数II3章例題112）</p>
+
+
+<!-- ==================== 場合の数・確率 ==================== -->
+<h2 id="kakuritsu">§ 場合の数・確率</h2>
+
+<h3>◎\({}_nC_k\) の最大値</h3>
+<p>→\(\displaystyle\frac{{}_nC_{k+1}}{{}_nC_k}\) を考える（cf 離散変数の最大最小）</p>
+
+<h3>◎条件・制約のある反復試行</h3>
+<p>→経路図の導入は検討できるようにしておく<br>
+例：東大文系2019年第三問</p>
+
+<h3>◎カードを引いて作られる数の総和を求める</h3>
+<p>→桁ごとに計算するとスムーズ</p>
+
+<h3>◎連続して並べる順列（「連続して〜コ以上並べる」など）</h3>
+<p>→どこから連続するかで場合分けする</p>
+
+<h3>◎サイコロを4回投げ \(x \leq y < z \leq w\) となる場合の数</h3>
+<p>→\(a \leq b \Leftrightarrow a < b + 1\) という同値関係により等号なしに帰着させる</p>
+
+<h3>◎最短経路問題における「〜を通らない」という条件</h3>
+<p>→全体から通るものから引く</p>
+
+
+<!-- ==================== 集合と命題 ==================== -->
+<h2 id="shuugou">§ 集合と命題</h2>
+
+<div class="tetsusoku">
+<p><strong>[鉄則 2変数に対する等式・不等式の条件]</strong><br>
+→2変数に対する条件は、領域で考える。<span class="important">（重要）</span></p>
+</div>
+
+<h3>◎集合の一致を示す</h3>
+<p>→\(A \subset B\) かつ \(B \subset A\) を示す</p>
+<p>例題<br>
+<a class="ref-link" href="https://examist.jp/mathematics/class/set-soutou-syoumei/">https://examist.jp/mathematics/class/set-soutou-syoumei/</a></p>
+
+<h3>◎否定命題を考える（対偶、背理法）かもしれないワード</h3>
+<p>→「または」「少なくとも」「無理数」「無限に存在」「素数となる」</p>
+
+</body>
+</html>
