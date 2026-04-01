@@ -25,11 +25,11 @@ h3 { border-left: 4px solid #2c5aa0; padding-left: 12px; margin-top: 30px; }
 .answer-box h4 { color: #2e7d32; margin-top: 0; }
 .freedom { display: inline-block; background: #cc0000; color: #fff; padding: 2px 10px; font-weight: bold; border-radius: 3px; }
 .page-wrapper { display: flex; }
-.sidebar { position: fixed; top: 0; left: 0; width: 260px; height: 100vh; overflow-y: auto; background: #1a1a2e; color: #eee; padding: 20px 0; z-index: 100; font-size: 0.85em; }
-.sidebar h2 { font-size: 1em; padding: 10px 16px; margin: 0; color: #fff; background: #16213e; }
-.sidebar a { display: block; padding: 6px 16px; color: #ccc; text-decoration: none; border-left: 3px solid transparent; transition: all 0.15s; }
-.sidebar a:hover { background: #16213e; color: #fff; border-left-color: #cc0000; }
-.sidebar a.active { background: #16213e; color: #fff; border-left-color: #cc0000; }
+.sidebar { position: sticky; top: 0; flex-shrink: 0; width: 260px; height: 100vh; overflow-y: auto; background: #f0f2f5; color: #333; padding: 20px 0; z-index: 100; font-size: 0.85em; border-right: 1px solid #ddd; }
+.sidebar h2 { font-size: 1em; padding: 10px 16px; margin: 0; color: #333; background: #e4e7ec; }
+.sidebar a { display: block; padding: 6px 16px; color: #555; text-decoration: none; border-left: 3px solid transparent; transition: all 0.15s; }
+.sidebar a:hover { background: #e4e7ec; color: #333; border-left-color: #cc0000; }
+.sidebar a.active { background: #e4e7ec; color: #333; border-left-color: #cc0000; font-weight: bold; }
 .main-content { margin-left: 260px; max-width: 900px; padding: 20px; }
 .sidebar-toggle { display: none; position: fixed; top: 10px; left: 10px; z-index: 200; background: #1a1a2e; color: #fff; border: none; padding: 8px 12px; cursor: pointer; border-radius: 4px; font-size: 1.2em; }
 @media (max-width: 768px) {
