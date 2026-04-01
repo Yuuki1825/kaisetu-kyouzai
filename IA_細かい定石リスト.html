@@ -7,7 +7,7 @@
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 <style>
-body { font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; line-height: 1.8; color: #333; background: #f9f9f9; }
+body { font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', sans-serif; padding: 20px; line-height: 1.8; color: #333; background: #f9f9f9; }
 h1 { text-align: center; font-size: 2em; margin-bottom: 10px; }
 h2 { background: #2c5aa0; color: #fff; padding: 8px 16px; font-size: 1.4em; margin-top: 50px; text-align: center; }
 h3 { border-left: 4px solid #2c5aa0; padding-left: 12px; margin-top: 25px; font-size: 1.1em; }
@@ -27,9 +27,34 @@ ul.plain li::before { content: "・"; }
 .fig-inline img { max-width: 200px; height: auto; }
 .fig-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin: 15px 0; }
 .fig-row .fig-inline img { max-width: 220px; }
+.page-wrapper { display: flex; }
+.sidebar { position: fixed; top: 0; left: 0; width: 260px; height: 100vh; overflow-y: auto; background: #1a1a2e; color: #eee; padding: 20px 0; z-index: 100; font-size: 0.85em; }
+.sidebar h2 { font-size: 1em; padding: 10px 16px; margin: 0; color: #fff; background: #16213e; }
+.sidebar a { display: block; padding: 6px 16px; color: #ccc; text-decoration: none; border-left: 3px solid transparent; transition: all 0.15s; }
+.sidebar a:hover { background: #16213e; color: #fff; border-left-color: #e67e22; }
+.sidebar a.active { background: #16213e; color: #fff; border-left-color: #e67e22; }
+.main-content { margin-left: 260px; max-width: 900px; padding: 20px; }
+.sidebar-toggle { display: none; position: fixed; top: 10px; left: 10px; z-index: 200; background: #1a1a2e; color: #fff; border: none; padding: 8px 12px; cursor: pointer; border-radius: 4px; font-size: 1.2em; }
+@media (max-width: 768px) {
+  .sidebar { transform: translateX(-100%); transition: transform 0.3s; }
+  .sidebar.open { transform: translateX(0); }
+  .main-content { margin-left: 0; }
+  .sidebar-toggle { display: block; }
+}
 </style>
 </head>
 <body>
+<button class="sidebar-toggle" onclick="document.querySelector('.sidebar').classList.toggle('open')">☰</button>
+<div class="page-wrapper">
+<nav class="sidebar">
+<h2>目次</h2>
+<a href="#sec-integer">§ 整数</a>
+<a href="#sec-expr">§ 数と式</a>
+<a href="#sec-geometry">§ 図形</a>
+<a href="#sec-combi">§ 場合の数・確率</a>
+<a href="#sec-logic">§ 集合と命題</a>
+</nav>
+<div class="main-content">
 
 <h1>★ IA 細かい定石リスト</h1>
 
@@ -40,7 +65,7 @@ ul.plain li::before { content: "・"; }
 </div>
 
 <!-- ==================== 整数 ==================== -->
-<h2 id="seisuu">§ 整数</h2>
+<h2 id="sec-integer">§ 整数</h2>
 
 <p>基本方針…まずは実験から</p>
 <p>①因数分解で積の形に…定数項無視してゴリ押したり、平方完成したり。特にn乗±n乗、2乗の差が頻出</p>
@@ -126,7 +151,7 @@ ul.plain li::before { content: "・"; }
 
 
 <!-- ==================== 数と式 ==================== -->
-<h2 id="suutoshiki">§ 数と式</h2>
+<h2 id="sec-expr">§ 数と式</h2>
 
 <h3>◎因数分解（おさえておきたいもの）</h3>
 <p>●原則は「最低次の文字について整理する」</p>
@@ -241,7 +266,7 @@ ul.plain li::before { content: "・"; }
 
 
 <!-- ==================== 図形 ==================== -->
-<h2 id="zukei">§ 図形</h2>
+<h2 id="sec-geometry">§ 図形</h2>
 
 <h3>◎\(S = \displaystyle\frac{1}{2}lm\sin\theta\) という面積公式を覚えておく</h3>
 <div class="fig"><img src="images_1a/img_02_p09.jpg" alt="四角形の面積公式 S=1/2 lm sinθ（説明）"></div>
@@ -378,7 +403,7 @@ ul.plain li::before { content: "・"; }
 
 
 <!-- ==================== 場合の数・確率 ==================== -->
-<h2 id="kakuritsu">§ 場合の数・確率</h2>
+<h2 id="sec-combi">§ 場合の数・確率</h2>
 
 <h3>◎\({}_nC_k\) の最大値</h3>
 <p>→\(\displaystyle\frac{{}_nC_{k+1}}{{}_nC_k}\) を考える（cf 離散変数の最大最小）</p>
@@ -401,7 +426,7 @@ ul.plain li::before { content: "・"; }
 
 
 <!-- ==================== 集合と命題 ==================== -->
-<h2 id="shuugou">§ 集合と命題</h2>
+<h2 id="sec-logic">§ 集合と命題</h2>
 
 <div class="tetsusoku">
 <p><strong>[鉄則 2変数に対する等式・不等式の条件]</strong><br>
@@ -416,5 +441,15 @@ ul.plain li::before { content: "・"; }
 <h3>◎否定命題を考える（対偶、背理法）かもしれないワード</h3>
 <p>→「または」「少なくとも」「無理数」「無限に存在」「素数となる」</p>
 
+</div></div>
+<script>
+document.addEventListener('scroll', () => {
+  const sections = document.querySelectorAll('h2[id]');
+  const links = document.querySelectorAll('.sidebar a');
+  let current = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) current = s.id; });
+  links.forEach(l => { l.classList.toggle('active', l.getAttribute('href') === '#' + current); });
+});
+</script>
 </body>
 </html>
