@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>逆像法 補助教材</title>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+body { font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', sans-serif; padding: 20px; line-height: 1.8; color: #333; background: #f9f9f9; }
+h1 { text-align: center; border: 2px solid #333; padding: 20px; background: #fff; font-size: 2em; }
+h2 { background: #2c5aa0; color: #fff; padding: 8px 16px; font-size: 1.4em; margin-top: 50px; }
+h3 { border-left: 4px solid #2c5aa0; padding-left: 12px; margin-top: 30px; }
+.definition-box { border: 2px solid #cc0000; border-left: 4px solid #cc0000; padding: 20px; margin: 20px 0; background: #fff; }
+.definition-box h4 { text-align: center; margin-top: 0; color: #cc0000; }
+.problem-box { border: 1px solid #999; border-top: 2px solid #2c5aa0; padding: 15px; margin: 15px 0; background: #fff; }
+.problem-header { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.problem-number { background: #2c5aa0; color: #fff; padding: 4px 12px; font-weight: bold; font-size: 1.1em; }
+.commentary { background: #f0f4ff; border-left: 3px solid #2c5aa0; padding: 12px; margin: 10px 0; }
+.note { color: #666; font-size: 0.95em; }
+.important { font-weight: bold; color: #cc0000; }
+.source { color: #888; font-size: 0.9em; text-align: right; }
+.page-wrapper { display: flex; }
+.sidebar { position: sticky; top: 0; flex-shrink: 0; width: 260px; height: 100vh; overflow-y: auto; background: #f0f2f5; color: #333; padding: 20px 0; z-index: 100; font-size: 0.85em; border-right: 1px solid #ddd; }
+.sidebar h2 { font-size: 1em; padding: 10px 16px; margin: 0; color: #333; background: #e4e7ec; }
+.sidebar a { display: block; padding: 6px 16px; color: #555; text-decoration: none; border-left: 3px solid transparent; transition: all 0.15s; }
+.sidebar a:hover { background: #e4e7ec; color: #333; border-left-color: #cc0000; }
+.sidebar a.active { background: #e4e7ec; color: #333; border-left-color: #cc0000; font-weight: bold; }
+.main-content { margin-left: 260px; max-width: 900px; padding: 20px; }
+.sidebar-toggle { display: none; position: fixed; top: 10px; left: 10px; z-index: 200; background: #1a1a2e; color: #fff; border: none; padding: 8px 12px; cursor: pointer; border-radius: 4px; font-size: 1.2em; }
+@media (max-width: 768px) {
+  .sidebar { transform: translateX(-100%); transition: transform 0.3s; }
+  .sidebar.open { transform: translateX(0); }
+  .main-content { margin-left: 0; }
+  .sidebar-toggle { display: block; }
+}
+</style>
+</head>
+<body>
+<button class="sidebar-toggle" onclick="document.querySelector('.sidebar').classList.toggle('open')">&#9776;</button>
+<div class="page-wrapper">
+<nav class="sidebar">
+<h2>目次</h2>
+<a href="#sec-gyakuzo">1 逆像法とは</a>
+<a href="#sec-junzo">2 順像法とは</a>
+<a href="#sec-5sen">3 逆像法5選</a>
+<a href="#sec-owari">4 おわりに</a>
+</nav>
+<div class="main-content">
+
+<h1>逆像法 補助教材</h1>
+<p class="source">松濤舎</p>
+
+<!-- ==================== 逆像法とは ==================== -->
+<h2 id="sec-gyakuzo">1 逆像法とは</h2>
+
+<div class="definition-box">
+<h4>逆像法</h4>
+<p>逆像法は、「この点はOKですか?」と、1つ1つ点を調べていき、何百の点を調べていくことで取りうる範囲が見えてくるという考えが根本にあります。</p>
+<p>しかし、座標平面上（あるいは数直線上）のすべての点を調べるのは不可能なので、\((X, Y)\) や \(k\) のように一般化した定数で同じ議論をします。</p>
+<p>この考え方が<span class="important">逆像法</span>です。<span class="important">軌跡領域問題</span>や<span class="important">最大最小</span>で使われます。</p>
+</div>
+
+<!-- ==================== 順像法とは ==================== -->
+<h2 id="sec-junzo">2 順像法とは</h2>
+
+<div class="commentary">
+<p>順像法についてはいろいろな説明の仕方がされますが、端的に言えば、逆像法の対になる考えです。</p>
+<p>自然なプロセスで"演繹的に"範囲を求めていく考え方を順像法と呼んでいます。</p>
+<p>2次関数の最大最小で「平方完成する」のも、3次関数の問題で「微分してグラフを描いて求める」のも順像法です。</p>
+<p>もちろん2変数関数の場合は演繹的に解く方法が「1文字固定」なので、多くの参考書では「順像法＝1文字固定」と紹介されますが、順像法はもっと意味が広く、<span class="important">逆像法以外の求め方はすべて順像法</span>だと思っています。</p>
+<p class="note">（ここまで書きましたが、逆像が分かっているならば順像の「概念」(\(\neq\) 解法) は理解できなくてもいいです）</p>
+</div>
+
+<!-- ==================== 逆像法5選 ==================== -->
+<h2 id="sec-5sen">3 逆像法5選</h2>
+
+<div class="problem-box">
+<div class="problem-header">
+<span class="problem-number">第1問</span>
+</div>
+<p>実数 \(x, y\) が \(x^2 - xy + y^2 = 3\) を満たすとする。</p>
+<p>(1) \(x\) の最大値と最小値を求めよ。</p>
+<p>(2) \(2x + y\) の最大値と最小値を求めよ。</p>
+</div>
+
+<div class="problem-box">
+<div class="problem-header">
+<span class="problem-number">第2問</span>
+</div>
+<p>(1) \(x = s + t + 1,\; y = s - t - 1\) とおく。\(s, t\) が \(s \geq 0,\; t \geq 0\) の範囲を動くとき、点 \((x, y)\) の動く範囲を図示せよ。</p>
+<p>(2) \(x = st + s - t + 1,\; y = s + t - 1\) とおく。\(s, t\) が実数全体を動くとき、点 \((x, y)\) の動く範囲を図示せよ。</p>
+</div>
+
+<div class="problem-box">
+<div class="problem-header">
+<span class="problem-number">第3問</span>
+</div>
+<p>\(xyz\) 空間の中で、\((0, 0, 1)\) を中心とする半径1の球面 \(S\) を考える。点 \(Q\) が \((0, 0, 2)\) 以外の \(S\) 上の点を動くとき、点 \(Q\) と点 \(P(1, 0, 2)\) の2点を通る直線 \(l\) と平面 \(z = 0\) との交点を \(R\) とおく。\(R\) の動く範囲を求め、図示せよ。</p>
+</div>
+
+<div class="problem-box">
+<div class="problem-header">
+<span class="problem-number">第4問</span>
+</div>
+<p>実数 \(a, b, c\) が \(a + b + c = 8,\; a^2 + b^2 + c^2 = 32\) を満たすとき、実数 \(c\) の最大値を求めよ。</p>
+</div>
+
+<div class="problem-box">
+<div class="problem-header">
+<span class="problem-number">第5問</span>
+</div>
+<p>\(f(x) = x^2 - px + q\) とする。ここで \(p, q\) は実数とする。\(p, q\) は次の条件を満たして動く。</p>
+<p>【条件】2次方程式 \(f(x) = 0\) は実数解をもち、2解の和の絶対値と2解の積の絶対値は等しい</p>
+<p>(1) 点 \((p, q)\) が存在する範囲を \(pq\) 平面に図示せよ。</p>
+<p>(2) 放物線 \(y = f(x)\) が通りえない範囲を \(xy\) 平面に図示し、そのうち \(-1 < x < 1\) を満たす部分の面積を求めよ。</p>
+</div>
+
+<!-- ==================== おわりに ==================== -->
+<h2 id="sec-owari">4 おわりに</h2>
+
+<div class="commentary">
+<p>他にも逆像法の問題は数えきれないほどありますが、参考書などの解答ではうまく式変形をして求めた感が満載で、背景に逆像の考え方が書かれていないことがほとんどです。</p>
+<p>ですので、これからは<span class="important">「この求め方は逆像だと思えば当たり前だな」と思えるようになること</span>を目指してほしいと思います。</p>
+</div>
+
+</div>
+</div>
+</body>
+</html>
