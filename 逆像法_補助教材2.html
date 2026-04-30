@@ -3,14 +3,52 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>逆像法 補助教材 解説ノート</title>
+<title>逆像法 超わかりやすく解説</title>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 <style>
 body { font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', sans-serif; padding: 20px; line-height: 1.8; color: #333; background: #f9f9f9; }
 h1 { text-align: center; border: 2px solid #333; padding: 20px; background: #fff; font-size: 2em; }
 h2 { background: #2c5aa0; color: #fff; padding: 8px 16px; font-size: 1.4em; margin-top: 50px; }
-.page-img { display: block; max-width: 100%; margin: 20px auto; border: 1px solid #ddd; box-shadow: 0 2px 8px rgba(0,0,0,0.1); background: #fff; }
-.note { color: #666; font-size: 0.95em; text-align: center; margin-bottom: 30px; }
+h3 { border-left: 4px solid #2c5aa0; padding-left: 12px; margin-top: 30px; }
+h4 { margin-top: 20px; }
+p { margin: 10px 0; }
+.definition-box { border: 2px solid #cc0000; border-left: 4px solid #cc0000; padding: 20px; margin: 20px 0; background: #fff; }
+.definition-box h4 { text-align: center; margin-top: 0; color: #cc0000; }
+.problem-box { border: 1px solid #999; border-top: 2px solid #2c5aa0; padding: 15px; margin: 15px 0; background: #fff; }
+.problem-header { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.problem-number { background: #2c5aa0; color: #fff; padding: 4px 12px; font-weight: bold; font-size: 1.1em; }
+.commentary { background: #f0f4ff; border-left: 3px solid #2c5aa0; padding: 12px; margin: 10px 0; }
+.note { color: #666; font-size: 0.95em; }
+.important { font-weight: bold; color: #cc0000; }
 .source { color: #888; font-size: 0.9em; text-align: right; }
+
+/* 新規追加 */
+.step-box { background: #fff9c4; border: 2px solid #f9a825; padding: 18px 22px; margin: 24px 0; border-radius: 6px; }
+.step-box h4 { color: #b87900; margin-top: 0; font-size: 1.1em; }
+.step-box ol { margin: 8px 0 0 1.2em; padding: 0; }
+.step-box li { margin: 8px 0; }
+.step-box .step-num { display: inline-block; background: #f9a825; color: #fff; font-weight: bold; padding: 2px 10px; border-radius: 12px; margin-right: 8px; }
+
+.why-box { background: #e8f5e9; border-left: 4px solid #43a047; padding: 14px 18px; margin: 16px 0; }
+.why-box h4 { color: #2e7d32; margin-top: 0; font-size: 1.05em; }
+
+.key-point { background: #ffebee; border: 2px dashed #cc0000; padding: 14px 18px; margin: 20px 0; font-weight: bold; text-align: center; color: #cc0000; font-size: 1.05em; }
+
+.compare-table { width: 100%; border-collapse: collapse; margin: 20px 0; background: #fff; }
+.compare-table th, .compare-table td { border: 1px solid #ccc; padding: 10px 14px; vertical-align: top; }
+.compare-table th { background: #2c5aa0; color: #fff; text-align: center; }
+.compare-table th.junzo { background: #6a8caf; }
+.compare-table th.gyaku { background: #cc0000; }
+.compare-table td.label { background: #f0f0f0; font-weight: bold; width: 18%; }
+
+.fig { display: block; margin: 20px auto; padding: 12px; background: #fff; border: 1px solid #ddd; border-radius: 4px; }
+.fig-caption { text-align: center; color: #666; font-size: 0.9em; margin-top: 4px; }
+
+.dialog { background: #fffaf0; border-left: 3px solid #d97706; padding: 12px 16px; margin: 12px 0; font-size: 0.95em; }
+.dialog .q { color: #d97706; font-weight: bold; }
+.dialog .a { color: #2c5aa0; font-weight: bold; }
+
 .page-wrapper { display: flex; }
 .sidebar { position: sticky; top: 0; flex-shrink: 0; width: 260px; height: 100vh; overflow-y: auto; background: #f0f2f5; color: #333; padding: 20px 0; z-index: 100; font-size: 0.85em; border-right: 1px solid #ddd; }
 .sidebar h2 { font-size: 1em; padding: 10px 16px; margin: 0; color: #333; background: #e4e7ec; }
@@ -32,56 +70,541 @@ h2 { background: #2c5aa0; color: #fff; padding: 8px 16px; font-size: 1.4em; marg
 <div class="page-wrapper">
 <nav class="sidebar">
 <h2>目次</h2>
-<a href="#sec-intro">順像と逆像の違い</a>
-<a href="#sec-q1">第1問 解説</a>
-<a href="#sec-q2">第2問</a>
-<a href="#sec-q3">第3問 解説</a>
-<a href="#sec-q4">第4問 解説</a>
-<a href="#sec-q5">第5問 解説</a>
-<a href="#sec-tsuuka">通過領域まとめ</a>
+<a href="#sec-intro">1 イントロ — 何を求めたいのか</a>
+<a href="#sec-warmup">2 ウォームアップ「2 は取りうる？」</a>
+<a href="#sec-core">3 核心 — 具体値を K に</a>
+<a href="#sec-compare">4 順像法との対比</a>
+<a href="#sec-q1">5 代表問題① 第1問</a>
+<a href="#sec-q3">6 代表問題② 第3問</a>
+<a href="#sec-q5">7 代表問題③ 第5問</a>
+<a href="#sec-essence">8 逆像法の本質</a>
+<a href="#sec-self">9 自分で解いてみよう</a>
 </nav>
 <div class="main-content">
 
-<h1>逆像法 補助教材 解説ノート</h1>
+<h1>逆像法 超わかりやすく解説</h1>
 <p class="source">松濤舎</p>
 
-<!-- ==================== 順像と逆像の違い ==================== -->
-<h2 id="sec-intro">順像と逆像の違い</h2>
-<p class="note">具体例を通じて、逆像法の考え方を丁寧に解説しています。</p>
-<img class="page-img" src="images_gyakuzo2/page01.jpg" alt="順像と逆像の違い（1）">
-<img class="page-img" src="images_gyakuzo2/page02.jpg" alt="順像と逆像の違い（2）">
-<img class="page-img" src="images_gyakuzo2/page03.jpg" alt="順像と逆像の違い（3）">
+<div class="commentary">
+<p>この教材は <a href="逆像法_補助教材1.html">補助教材1</a> の続きとして、<span class="important">逆像法の考え方を「ゼロから腑に落とす」</span>ことを目的に作っています。</p>
+<p>「逆像法ってよく分からない」「やり方は知っているけど、なぜそうするのか説明できない」という方に向けて、<span class="important">具体例 → 一般化</span>の順で丁寧に進めます。</p>
+</div>
 
-<!-- ==================== 第1問 解説 ==================== -->
-<h2 id="sec-q1">第1問 解説</h2>
-<p class="note">\(x^2 - xy + y^2 = 3\) における最大最小を逆像法で求めます。</p>
-<img class="page-img" src="images_gyakuzo2/page04.jpg" alt="第1問 解説（1）">
-<img class="page-img" src="images_gyakuzo2/page05.jpg" alt="第1問 解説（2）">
+<!-- ==================== 1. イントロ ==================== -->
+<h2 id="sec-intro">1 イントロ — そもそも何を求めたいのか</h2>
 
-<!-- ==================== 第2問 ==================== -->
-<h2 id="sec-q2">第2問</h2>
-<p class="note">2012 東北大 第1問 &#8212; 解答略。自分なりに逆像法の説明を書けるようにしましょう。</p>
+<p>まず次の超基本問題から始めましょう。</p>
 
-<!-- ==================== 第3問 解説 ==================== -->
-<h2 id="sec-q3">第3問 解説</h2>
-<p class="note">空間ベクトルの問題を逆像法の視点で解きます。</p>
-<img class="page-img" src="images_gyakuzo2/page06.jpg" alt="第3問 解説（1）">
-<img class="page-img" src="images_gyakuzo2/page07.jpg" alt="第3問 解説（2）">
+<div class="problem-box">
+<p><strong>問題</strong>　\(x\) が全実数を動くとき、\(x^2 + 2x\) の最小値を求めよ。</p>
+</div>
 
-<!-- ==================== 第4問 解説 ==================== -->
-<h2 id="sec-q4">第4問 解説</h2>
-<p class="note">対称式の条件下での最大値を逆像法で求めます。</p>
-<img class="page-img" src="images_gyakuzo2/page07.jpg" alt="第4問 解説">
+<p>多くの人が真っ先に思いつくのは「平方完成」だと思います。</p>
+<p>\[x^2 + 2x = (x+1)^2 - 1\]</p>
+<p>よってグラフから最小値は \(-1\)。これは正しい解答ですし、<span class="important">これが順像法</span>です（後で詳しく扱います）。</p>
 
-<!-- ==================== 第5問 解説 ==================== -->
-<h2 id="sec-q5">第5問 解説</h2>
-<p class="note">放物線の通過領域を逆像法と誘導の利用で求めます。</p>
-<img class="page-img" src="images_gyakuzo2/page08.jpg" alt="第5問 解説">
+<p>ここでは、<span class="important">あえて別の角度から</span>同じ問題を眺めてみます。</p>
 
-<!-- ==================== 通過領域まとめ ==================== -->
-<h2 id="sec-tsuuka">通過領域まとめ</h2>
-<p class="note">逆像法の本質と通過領域問題での定石をまとめています。</p>
-<img class="page-img" src="images_gyakuzo2/page09.jpg" alt="通過領域まとめ">
+<div class="why-box">
+<h4>視点の切り替え</h4>
+<p>「最小値を求める」というお題は、言いかえれば</p>
+<p style="text-align:center;"><strong>「\(x^2 + 2x\) が<span class="important">取りうる値の集合</span>を求めて、その<span class="important">下限</span>を読む」</strong></p>
+<p>ことに他なりません。</p>
+<p>つまり、本当に欲しいのは「<strong>取りうる値の集合</strong>」なのです。</p>
+</div>
+
+<p>では「取りうる値の集合」をどうやって作るか？　もっとも原始的な方法は、<span class="important">数直線上の点を 1 個ずつ調べる</span>ことです。</p>
+
+<svg class="fig" viewBox="0 0 600 120" width="600" height="120" xmlns="http://www.w3.org/2000/svg">
+  <line x1="40" y1="60" x2="560" y2="60" stroke="#333" stroke-width="2"/>
+  <polygon points="555,55 565,60 555,65" fill="#333"/>
+  <text x="570" y="65" font-size="14">値</text>
+  <!-- 目盛 -->
+  <g font-size="12" fill="#666">
+    <line x1="100" y1="55" x2="100" y2="65" stroke="#666"/><text x="93" y="85">−3</text>
+    <line x1="180" y1="55" x2="180" y2="65" stroke="#666"/><text x="173" y="85">−2</text>
+    <line x1="260" y1="55" x2="260" y2="65" stroke="#666"/><text x="253" y="85">−1</text>
+    <line x1="340" y1="55" x2="340" y2="65" stroke="#666"/><text x="335" y="85">0</text>
+    <line x1="420" y1="55" x2="420" y2="65" stroke="#666"/><text x="415" y="85">1</text>
+    <line x1="500" y1="55" x2="500" y2="65" stroke="#666"/><text x="495" y="85">2</text>
+  </g>
+  <!-- 質問の点 -->
+  <g>
+    <text x="170" y="35" font-size="14" fill="#d97706">？</text>
+    <text x="250" y="35" font-size="14" fill="#d97706">？</text>
+    <text x="330" y="35" font-size="14" fill="#d97706">？</text>
+    <text x="495" y="35" font-size="14" fill="#d97706">？</text>
+  </g>
+  <text x="40" y="20" font-size="13" fill="#d97706">「この値は取りうる？」を 1 個ずつ問う</text>
+</svg>
+<p class="fig-caption">原始的なアプローチ：値を 1 個ずつ「OK か NG か」確かめていく</p>
+
+<p>もちろん、無限個の点をすべて調べるのは不可能です。<strong>でも、原理は同じです。</strong></p>
+<p>この「<span class="important">点を 1 個ずつ調べる</span>」という発想を貫いたとき、自然に出てくるのが <span class="important">逆像法</span> です。</p>
+
+<!-- ==================== 2. ウォームアップ ==================== -->
+<h2 id="sec-warmup">2 ウォームアップ「2 は取りうる？」を実際にやってみる</h2>
+
+<p>本当に点を 1 個ずつ調べる気持ちで、<strong>「\(x^2 + 2x\) は値 2 を取りうるか？」</strong> を実際に判定してみます。</p>
+
+<div class="dialog">
+<p><span class="q">Q.</span>「\(x^2 + 2x = 2\) を満たす実数 \(x\) は存在するか？」</p>
+<p>これは 2 次方程式 \(x^2 + 2x - 2 = 0\) の<strong>実数解の有無</strong>を聞いているのと同じです。</p>
+<p>判別式：\(\dfrac{D}{4} = 1^2 - 1\cdot(-2) = 3 > 0\)　→　実数解あり。</p>
+<p><span class="a">A.</span>　よって <strong>\(x = -1 \pm \sqrt{3}\)</strong> が存在する。つまり <strong>2 は取りうる</strong>。</p>
+</div>
+
+<p>続けて、<strong>「\(-2\) は取りうるか？」</strong> も同じやり方で。</p>
+
+<div class="dialog">
+<p><span class="q">Q.</span>「\(x^2 + 2x = -2\) を満たす実数 \(x\) は存在するか？」</p>
+<p>2 次方程式 \(x^2 + 2x + 2 = 0\)。</p>
+<p>判別式：\(\dfrac{D}{4} = 1 - 2 = -1 < 0\)　→　実数解なし。</p>
+<p><span class="a">A.</span>　よって <strong>\(-2\) は取りえない</strong>。</p>
+</div>
+
+<svg class="fig" viewBox="0 0 600 130" width="600" height="130" xmlns="http://www.w3.org/2000/svg">
+  <line x1="40" y1="65" x2="560" y2="65" stroke="#333" stroke-width="2"/>
+  <polygon points="555,60 565,65 555,70" fill="#333"/>
+  <g font-size="12" fill="#666">
+    <line x1="180" y1="60" x2="180" y2="70" stroke="#666"/><text x="173" y="90">−2</text>
+    <line x1="260" y1="60" x2="260" y2="70" stroke="#666"/><text x="253" y="90">−1</text>
+    <line x1="340" y1="60" x2="340" y2="70" stroke="#666"/><text x="335" y="90">0</text>
+    <line x1="500" y1="60" x2="500" y2="70" stroke="#666"/><text x="495" y="90">2</text>
+  </g>
+  <!-- NG: -2 -->
+  <g>
+    <line x1="172" y1="42" x2="188" y2="58" stroke="#cc0000" stroke-width="3"/>
+    <line x1="188" y1="42" x2="172" y2="58" stroke="#cc0000" stroke-width="3"/>
+    <text x="160" y="35" font-size="13" fill="#cc0000" font-weight="bold">NG</text>
+  </g>
+  <!-- OK: 2 -->
+  <g>
+    <circle cx="500" cy="50" r="9" fill="none" stroke="#43a047" stroke-width="3"/>
+    <text x="487" y="35" font-size="13" fill="#43a047" font-weight="bold">OK</text>
+  </g>
+</svg>
+<p class="fig-caption">2 個の値を判定できた</p>
+
+<p>ここまでの 2 例で、<strong>判定の手順が完全に同じ</strong>であることに注目してください。</p>
+
+<div class="step-box">
+<h4>逆像法の 2 ステップ</h4>
+<ol style="list-style:none; padding-left:0;">
+<li><span class="step-num">①</span><strong>具体的な値を例にして</strong>、「その値は取りうるか／取り得ないのか」という問いを判別式で結論づける。</li>
+<li><span class="step-num">②</span><strong>①と全く同じ手順を、ある定数 \(K\) に対して行う</strong>。</li>
+</ol>
+</div>
+
+<p>つまり <span class="important">①で型を作り、②で型に \(K\) を流し込むだけ</span>です。次の章で②をやります。</p>
+
+<!-- ==================== 3. 核心 ==================== -->
+<h2 id="sec-core">3 核心 — 具体値を \(K\) に置き換えるだけ</h2>
+
+<p>無限個の値をひとつずつ調べる代わりに、<strong>「ある値 \(K\) が取りうるかどうか」</strong> をまとめて判定します。</p>
+
+<p>やることは <strong>2 と全く同じ</strong>。</p>
+
+<p>\[x^2 + 2x = K \quad \Longleftrightarrow \quad x^2 + 2x - K = 0\]</p>
+
+<p>これを満たす実数 \(x\) が存在する条件は、判別式 \(\geqq 0\)：</p>
+
+<p>\[\frac{D}{4} = 1^2 - 1\cdot(-K) = 1 + K \geqq 0 \quad \Longleftrightarrow \quad K \geqq -1\]</p>
+
+<svg class="fig" viewBox="0 0 600 130" width="600" height="130" xmlns="http://www.w3.org/2000/svg">
+  <!-- 数直線 -->
+  <line x1="40" y1="65" x2="560" y2="65" stroke="#333" stroke-width="2"/>
+  <polygon points="555,60 565,65 555,70" fill="#333"/>
+  <text x="570" y="69" font-size="14">K</text>
+  <!-- 取りうる範囲（緑） -->
+  <line x1="260" y1="65" x2="555" y2="65" stroke="#43a047" stroke-width="6"/>
+  <circle cx="260" cy="65" r="6" fill="#43a047"/>
+  <!-- 取り得ない範囲（赤の点線） -->
+  <line x1="40" y1="65" x2="260" y2="65" stroke="#cc0000" stroke-width="3" stroke-dasharray="6,4"/>
+  <!-- 目盛 -->
+  <g font-size="12" fill="#666">
+    <line x1="100" y1="60" x2="100" y2="70" stroke="#666"/><text x="93" y="90">−3</text>
+    <line x1="180" y1="60" x2="180" y2="70" stroke="#666"/><text x="173" y="90">−2</text>
+    <line x1="260" y1="60" x2="260" y2="70" stroke="#666"/><text x="253" y="90">−1</text>
+    <line x1="340" y1="60" x2="340" y2="70" stroke="#666"/><text x="335" y="90">0</text>
+    <line x1="420" y1="60" x2="420" y2="70" stroke="#666"/><text x="415" y="90">1</text>
+    <line x1="500" y1="60" x2="500" y2="70" stroke="#666"/><text x="495" y="90">2</text>
+  </g>
+  <!-- ラベル -->
+  <text x="120" y="45" font-size="13" fill="#cc0000" font-weight="bold">取り得ない</text>
+  <text x="350" y="45" font-size="13" fill="#43a047" font-weight="bold">取りうる</text>
+  <text x="240" y="115" font-size="12" fill="#cc0000">境界 K=−1</text>
+</svg>
+<p class="fig-caption">\(K\) を動かして判別式の値が変わる様子。\(K=-1\) を境に「取りうる／取り得ない」が切り替わる</p>
+
+<p>取りうる値の集合は \(\{K \mid K \geqq -1\} = [-1, \infty)\)。よって最小値は \(\boldsymbol{-1}\)。</p>
+
+<p>平方完成で出した答えと、<span class="important">完全に一致</span>します。</p>
+
+<div class="why-box">
+<h4>なぜ判別式を使うのか？</h4>
+<p>キーになる同値変形は次の 1 行です。</p>
+<p style="text-align:center;"><strong>「\(K\) は取りうる」 \(\Longleftrightarrow\) 「\(f(x) = K\) を満たす実数 \(x\) が存在する」</strong></p>
+<p>"取りうる" の言いかえが "実数 \(x\) の存在" であり、それを判定する道具のひとつが<strong>判別式</strong>です。</p>
+<p>2 次方程式なら判別式、もう少し複雑なら<strong>領域図示</strong>や<strong>グラフの共有点</strong>に置き換わります（道具は問題ごとに変わります）。</p>
+</div>
+
+<div class="key-point">
+逆像法の本質はただひとつ：<br>
+<span style="font-size:1.1em;">「<strong>具体値で立てた判定手順を、そのまま \(K\) に適用する</strong>」</span>
+</div>
+
+<!-- ==================== 4. 順像法との対比 ==================== -->
+<h2 id="sec-compare">4 順像法との対比 — 同じ問題を 2 通りで</h2>
+
+<p>3 章までやった \(x^2 + 2x\) の最小値を、<strong>順像法</strong>と<strong>逆像法</strong>で並べて比較します。</p>
+
+<table class="compare-table">
+<thead>
+<tr>
+<th class="label">　</th>
+<th class="junzo">順像法（平方完成）</th>
+<th class="gyaku">逆像法（K で存在判定）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="label">考え方</td>
+<td>各 \(x\) でどんな値になるかを<strong>順に</strong>追う</td>
+<td>各値 \(K\) が取りうるかを<strong>逆向き</strong>に判定</td>
+</tr>
+<tr>
+<td class="label">式変形</td>
+<td>\(x^2 + 2x = (x+1)^2 - 1\)</td>
+<td>\(x^2 + 2x - K = 0\) に対し \(\dfrac{D}{4} = 1 + K\)</td>
+</tr>
+<tr>
+<td class="label">判定</td>
+<td>頂点 \((-1, -1)\) でグラフ最小</td>
+<td>\(D \geqq 0\) すなわち \(K \geqq -1\)</td>
+</tr>
+<tr>
+<td class="label">最終形</td>
+<td>最小値 \(-1\)</td>
+<td>取りうる値の集合 \([-1, \infty)\) → 最小値 \(-1\)</td>
+</tr>
+</tbody>
+</table>
+
+<p>結果は同じ。<span class="important">視点（時間の向き）が逆</span>なだけです。</p>
+
+<div class="commentary">
+<p><strong>使い分けの目安</strong></p>
+<p>1 文字の関数なら、たいてい順像（平方完成・微分）が速い。<br>
+しかし<strong>条件付き 2 文字以上</strong>になると、平方完成や微分では押せなくなり、逆像法が威力を発揮します。次章以降の代表問題はまさにそのパターンです。</p>
+</div>
+
+<!-- ==================== 5. 代表問題① 第1問 ==================== -->
+<h2 id="sec-q1">5 代表問題① 第1問：\(x^2 - xy + y^2 = 3\) における \(x\) の最大最小</h2>
+
+<div class="problem-box">
+<div class="problem-header"><span class="problem-number">第1問</span></div>
+<p>実数 \(x, y\) が \(x^2 - xy + y^2 = 3\) を満たすとする。</p>
+<p>(1) \(x\) の最大値と最小値を求めよ。</p>
+<p>(2) \(2x + y\) の最大値と最小値を求めよ。</p>
+</div>
+
+<h3>(1) \(x\) の最大最小</h3>
+
+<p>「順像で行く」と \(y\) を消そうとしますが、\(y^2 = 3 - x^2 + xy\) が <strong>\(y\) について解けず</strong>、平方完成も微分もうまく行きません。<br>
+こういうときは <span class="important">「順像が無理なら逆像」</span>とマインドを切り替えます。</p>
+
+<h4>ステップ① まずは具体値で</h4>
+
+<p>「\(x = 1\) は取りうるか？」</p>
+
+<div class="dialog">
+<p>\(x = 1\) を代入すると \(1 - y + y^2 = 3\)、すなわち \(y^2 - y - 2 = 0\)。</p>
+<p>判別式 \(D = 1 + 8 = 9 > 0\)　→　実数 \(y\) が存在。</p>
+<p><span class="a">A.</span> よって <strong>\(x = 1\) は取りうる</strong>。</p>
+</div>
+
+<p class="note">※ ここで因数分解できる手前で「具体値の代入で実験する → 判別式で判定」という<strong>形</strong>を意識してください。次のステップで同じ形を使います。</p>
+
+<h4>ステップ② \(K\) で同じ手順を</h4>
+
+<p>「\(x = K\) は取りうるか？」</p>
+
+<p>\(x = K\) を代入すると</p>
+
+<p>\[K^2 - Ky + y^2 = 3 \quad \Longleftrightarrow \quad y^2 - Ky + (K^2 - 3) = 0\]</p>
+
+<p>これは <strong>\(y\) についての 2 次方程式</strong>です（\(K\) はパラメータとみなす）。実数 \(y\) が存在する条件は</p>
+
+<p>\[D = K^2 - 4(K^2 - 3) = -3K^2 + 12 \geqq 0\]</p>
+
+<p>\[\Longleftrightarrow K^2 \leqq 4 \Longleftrightarrow -2 \leqq K \leqq 2\]</p>
+
+<p>取りうる値の集合は \([-2, 2]\) なので、<strong>\(x\) の最大値 2、最小値 \(-2\)</strong>。</p>
+
+<svg class="fig" viewBox="0 0 480 320" width="480" height="320" xmlns="http://www.w3.org/2000/svg">
+  <!-- 軸 -->
+  <line x1="40" y1="160" x2="440" y2="160" stroke="#666" stroke-width="1"/>
+  <line x1="240" y1="20" x2="240" y2="300" stroke="#666" stroke-width="1"/>
+  <polygon points="435,155 445,160 435,165" fill="#666"/>
+  <polygon points="235,20 240,10 245,20" fill="#666"/>
+  <text x="445" y="175" font-size="13">x</text>
+  <text x="225" y="20" font-size="13">y</text>
+  <!-- x = -2, x = 2 の縦線 -->
+  <line x1="120" y1="20" x2="120" y2="300" stroke="#cc0000" stroke-width="2" stroke-dasharray="4,3"/>
+  <line x1="360" y1="20" x2="360" y2="300" stroke="#cc0000" stroke-width="2" stroke-dasharray="4,3"/>
+  <text x="100" y="315" font-size="12" fill="#cc0000">x=−2</text>
+  <text x="345" y="315" font-size="12" fill="#cc0000">x=2</text>
+  <!-- 楕円 x²-xy+y²=3 を回転楕円として近似描画 -->
+  <!-- パラメータ表示: x=2cosθ-2sinθ/√3 みたいなものを概略で。45度回転した楕円 -->
+  <ellipse cx="240" cy="160" rx="120" ry="60" transform="rotate(-45 240 160)" fill="rgba(44,90,160,0.10)" stroke="#2c5aa0" stroke-width="2"/>
+  <!-- 目盛 -->
+  <g font-size="11" fill="#888">
+    <text x="115" y="155">−2</text>
+    <text x="357" y="155">2</text>
+  </g>
+  <!-- 注釈 -->
+  <text x="50" y="40" font-size="13" fill="#2c5aa0" font-weight="bold">x²−xy+y²=3</text>
+  <text x="50" y="290" font-size="12" fill="#666">縦線 x=K がこの楕円と交われば「K は取りうる」</text>
+</svg>
+<p class="fig-caption">楕円 \(x^2-xy+y^2=3\) と縦線 \(x=K\) の共有点。共有点があるのは \(-2 \leqq K \leqq 2\)</p>
+
+<div class="why-box">
+<h4>図形的な裏付け</h4>
+<p>条件式 \(x^2 - xy + y^2 = 3\) は実は 45° 傾いた楕円。<br>
+「\(x = K\) は取りうる ⇔ 縦線 \(x = K\) と楕円が共有点を持つ」と読みかえれば、<strong>判別式で求めた範囲が楕円の \(x\) 座標の最大最小に一致する</strong>ことが視覚的にも納得できます。</p>
+</div>
+
+<h3>(2) \(2x + y\) の最大最小</h3>
+
+<p>同じ発想で「\(2x + y = K\) は取りうるか？」を考えます。<br>
+\(2x + y = K\) は<strong>1 次の等式</strong>なので、まずこれで \(y\) を消去できます（鉄則：等式条件は 1 文字消去）。</p>
+
+<p>\(y = K - 2x\) を条件式に代入：</p>
+
+<p>\[x^2 - x(K - 2x) + (K - 2x)^2 = 3\]</p>
+<p>\[\Longleftrightarrow x^2 - Kx + 2x^2 + K^2 - 4Kx + 4x^2 = 3\]</p>
+<p>\[\Longleftrightarrow 7x^2 - 5Kx + (K^2 - 3) = 0\]</p>
+
+<p>これを満たす実数 \(x\) が存在する条件は</p>
+
+<p>\[D = 25K^2 - 28(K^2 - 3) \geqq 0\]</p>
+<p>\[\Longleftrightarrow -3K^2 + 84 \geqq 0 \Longleftrightarrow K^2 \leqq 28\]</p>
+
+<p>よって \(-2\sqrt{7} \leqq K \leqq 2\sqrt{7}\)。<strong>最大 \(2\sqrt{7}\)、最小 \(-2\sqrt{7}\)</strong>。</p>
+
+<div class="commentary">
+<p>(1) も (2) も<strong>判別式に流し込むだけ</strong>のテンプレ操作だけで解けました。これが「条件付き 2 変数の最大最小」での逆像法の威力です。</p>
+</div>
+
+<!-- ==================== 6. 代表問題② 第3問 ==================== -->
+<h2 id="sec-q3">6 代表問題② 第3問：空間ベクトルだって逆像法</h2>
+
+<div class="problem-box">
+<div class="problem-header"><span class="problem-number">第3問</span></div>
+<p>\(xyz\) 空間の中で、\((0, 0, 1)\) を中心とする半径1の球面 \(S\) を考える。点 \(Q\) が \((0, 0, 2)\) 以外の \(S\) 上の点を動くとき、点 \(Q\) と点 \(P(1, 0, 2)\) の2点を通る直線 \(l\) と平面 \(z = 0\) との交点を \(R\) とおく。\(R\) の動く範囲を求め、図示せよ。</p>
+</div>
+
+<p>赤本などの解答では「空間ベクトルの問題」として処理されますが、<strong>背景には逆像の考えが流れています</strong>。</p>
+
+<h4>ステップ① まずは具体点で「\(R = (2, 3, 0)\) は通るか？」</h4>
+
+<p>もし点 \(R = (2, 3, 0)\) が \(R\) の動く範囲に含まれるなら、<strong>「\(P(1,0,2)\) と \(R(2,3,0)\) を結ぶ直線が球面 \(S\) と \((0,0,2)\) 以外で共有点を持つ」</strong>はず。</p>
+
+<p>そこで直線をパラメータ \(t\) で表します：</p>
+
+<p>\[\vec{P} + t(\vec{R} - \vec{P}) = (1, 0, 2) + t(1, 3, -2) = (1+t,\; 3t,\; 2-2t)\]</p>
+
+<p>これが球面 \(S\)（中心 \((0,0,1)\)、半径 1）上にある条件は</p>
+
+<p>\[(1+t)^2 + (3t)^2 + (2-2t-1)^2 = 1\]</p>
+<p>\[\Longleftrightarrow (1+t)^2 + 9t^2 + (1-2t)^2 = 1\]</p>
+<p>\[\Longleftrightarrow 14t^2 - 2t + 1 = 0\]</p>
+
+<p>これを満たす実数 \(t\) が存在するかは、判別式：</p>
+
+<p>\[\frac{D}{4} = 1 - 14 = -13 < 0\]</p>
+
+<p>よって <strong>\(R = (2, 3, 0)\) は通らない</strong>。</p>
+
+<svg class="fig" viewBox="0 0 480 280" width="480" height="280" xmlns="http://www.w3.org/2000/svg">
+  <!-- z=0 平面（横） -->
+  <line x1="40" y1="220" x2="440" y2="220" stroke="#666" stroke-width="1"/>
+  <text x="445" y="226" font-size="12">z=0</text>
+  <!-- 球 -->
+  <circle cx="160" cy="120" r="50" fill="rgba(44,90,160,0.12)" stroke="#2c5aa0" stroke-width="2"/>
+  <text x="155" y="100" font-size="11" fill="#2c5aa0">S</text>
+  <!-- P -->
+  <circle cx="240" cy="80" r="4" fill="#cc0000"/>
+  <text x="248" y="80" font-size="12" fill="#cc0000">P(1,0,2)</text>
+  <!-- R候補 (通る場合) -->
+  <circle cx="350" cy="220" r="4" fill="#43a047"/>
+  <text x="356" y="216" font-size="12" fill="#43a047">R 候補</text>
+  <!-- 直線 -->
+  <line x1="240" y1="80" x2="350" y2="220" stroke="#43a047" stroke-width="1.5" stroke-dasharray="3,3"/>
+  <!-- 通るかどうかの判定軸 -->
+  <text x="50" y="40" font-size="13" font-weight="bold" fill="#333">直線が球面と共有点を持つか？</text>
+  <text x="50" y="60" font-size="12" fill="#666">→ \(t\) の 2 次方程式の判別式で判定</text>
+</svg>
+<p class="fig-caption">具体点 \(R\) について「\(P\) と結んだ直線が球と交わるか」を判別式で判定する</p>
+
+<h4>ステップ② 一般点 \(R = (X, Y, 0)\) で同じ手順を</h4>
+
+<p>具体点でやった<strong>判定の手順をそのままコピーして、\(R = (X, Y, 0)\)</strong> に適用すればよい。</p>
+
+<p>\[\vec{P} + t(\vec{R} - \vec{P}) = (1 + t(X-1),\; tY,\; 2 - 2t)\]</p>
+
+<p>球面上の条件：</p>
+
+<p>\[(1 + t(X-1))^2 + (tY)^2 + (1 - 2t)^2 = 1\]</p>
+
+<p>これを展開して \(t\) について整理し、<strong>判別式 \(\geqq 0\) かつ \(t \neq\) (除外する \((0,0,2)\) に対応する \(t\) 値)</strong> を求めれば、\(R\) の動く範囲が出ます。</p>
+
+<div class="key-point">
+具体点 \((2,3,0)\) でやった<strong>「直線 → 球の方程式に代入 → \(t\) の判別式」</strong>という手順を、<br>
+そのまま \((X,Y,0)\) に流し込むのが逆像法。
+</div>
+
+<div class="commentary">
+<p>逆像法を知らないと、この問題は<strong>「いきなり \(R\) を文字で置いて計算を始める」</strong>ように見え、なぜそうするのか分からないまま手順だけ覚えることになります。<br>
+<span class="important">逆像で考えれば「具体点で実験 → 一般化」というごく自然な流れに見えてくる</span>はずです。</p>
+</div>
+
+<!-- ==================== 7. 代表問題③ 第5問 ==================== -->
+<h2 id="sec-q5">7 代表問題③ 第5問：放物線の通過領域（誘導の利用）</h2>
+
+<div class="problem-box">
+<div class="problem-header"><span class="problem-number">第5問</span></div>
+<p>\(f(x) = x^2 - px + q\) とする。ここで \(p, q\) は実数とする。\(p, q\) は次の条件を満たして動く。</p>
+<p>【条件】2次方程式 \(f(x) = 0\) は実数解をもち、2解の和の絶対値と2解の積の絶対値は等しい</p>
+<p>(1) 点 \((p, q)\) が存在する範囲を \(pq\) 平面に図示せよ。</p>
+<p>(2) 放物線 \(y = f(x)\) が通りえない範囲を \(xy\) 平面に図示せよ。</p>
+</div>
+
+<p>まず条件を式に直します。判別式 \(p^2 - 4q \geqq 0\)、解と係数の関係から「和の絶対値 \(=|p|\)」「積の絶対値 \(= |q|\)」なので</p>
+
+<p>\[p^2 - 4q \geqq 0 \quad \text{かつ} \quad |p| = |q|\]</p>
+
+<p>これが (1) の答えとなる \(pq\) 平面の領域です。</p>
+
+<h4>(2) の核心は「点 \((X, Y)\) を通る \((p, q)\) が存在するか」</h4>
+
+<p>放物線 \(y = x^2 - px + q\) が点 \((X, Y)\) を通る条件は</p>
+
+<p>\[Y = X^2 - pX + q \quad \Longleftrightarrow \quad q = pX + Y - X^2\]</p>
+
+<p>これは <strong>\(pq\) 平面における直線</strong>です（\(X, Y\) は固定の定数とみなす）。</p>
+
+<div class="why-box">
+<h4>逆像法 ＋ 誘導の利用</h4>
+<p>(2) で問われているのは <strong>「\((X, Y)\) を通る \((p, q)\) が条件下に存在するか」</strong>。<br>
+ここで (1) で求めた領域がまさに「条件を満たす \((p, q)\) の集合」になっているので、</p>
+<p style="text-align:center;"><strong>「(X, Y) を通る ⇔ 直線 \(q = pX + Y - X^2\) が (1) の領域と共有点を持つ」</strong></p>
+<p>と読みかえられます。<br>
+よって <strong>(1) で求めた領域に直線を重ねる図を描けば</strong>、(2) の答えが出る、というのが「誘導の利用」の意味です。</p>
+</div>
+
+<p>計算は補助教材1の page08 にあるとおり、<strong>通り得ない範囲</strong>は</p>
+
+<p>\[\left\{(X, Y) \;\middle|\; Y < X^2 - 1 \;\text{かつ}\; Y < (X-2)^2 \;\text{かつ}\; Y > -X^2-1 \;\text{かつ}\; \cdots \right\}\]</p>
+
+<p>のように複数の条件の組み合わせで表現され、\(-1 < x < 1\) 部分の面積は <strong>4</strong>。</p>
+
+<p class="note">※詳細な場合分けは補助教材1の問題を実際に解いてみてください。<strong>キモは「逆像法の存在条件 → 誘導の利用」という流れ</strong>です。</p>
+
+<!-- ==================== 8. 本質 ==================== -->
+<h2 id="sec-essence">8 逆像法の本質と適用範囲</h2>
+
+<div class="definition-box">
+<h4>逆像法の本質</h4>
+<p><span class="important">逆像法の本質は「具体値を入れたら、その値が取りうるかどうかをどう判断するか」を掴むこと</span>にあります。</p>
+<p>判定の道具は<strong>問題によって様々</strong>です（判別式、領域、グラフの共有点、ベクトルの長さ条件、…）。<br>
+だから<strong>一般化はできない</strong>し、しない方がいい。問題ごとに「具体値で実験 → 同じ手順を \(K\) や \((X, Y)\) に適用」を貫くのが大事です。</p>
+</div>
+
+<h3>逆像法が活きる問題ジャンル</h3>
+
+<ul>
+<li><strong>軌跡領域問題</strong>　…　「点 \((X, Y)\) が軌跡上にある ⇔ 条件を満たすパラメータが存在する」</li>
+<li><strong>通過領域問題</strong>　…　「曲線族が通る ⇔ パラメータの存在条件」</li>
+<li><strong>条件付きの最大最小</strong>　…　「\(K\) が取りうる ⇔ 条件を満たす変数組が存在する」</li>
+</ul>
+
+<h3>使う／使わないの判断目安</h3>
+
+<table class="compare-table">
+<thead>
+<tr>
+<th class="label">問題の構造</th>
+<th>第一選択</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="label">パラメータ 1 種・3 次以下</td>
+<td>順像法（微分）でも逆像法でも OK。やりやすい方を</td>
+</tr>
+<tr>
+<td class="label">パラメータ 2 種・対称式</td>
+<td>順像（実数条件）／逆像どちらも OK</td>
+</tr>
+<tr>
+<td class="label">条件付き 2 変数で 1 文字消去できない</td>
+<td><strong>逆像法</strong>が第一選択</td>
+</tr>
+<tr>
+<td class="label">「軌跡上の点を通るか」を問われる空間ベクトル</td>
+<td><strong>逆像法</strong>（具体点 → 一般点）</td>
+</tr>
+<tr>
+<td class="label">通過領域・誘導付き</td>
+<td><strong>逆像法</strong>＋誘導の利用</td>
+</tr>
+</tbody>
+</table>
+
+<div class="key-point">
+迷ったら：<br>
+<span style="font-size:1.05em;">「<strong>順像が無理なら逆像を試す</strong>」</span>
+</div>
+
+<!-- ==================== 9. 自分で解いてみよう ==================== -->
+<h2 id="sec-self">9 自分で解いてみよう</h2>
+
+<p>補助教材1 の <strong>第2問・第4問</strong>は、ここまでの考え方を自分で適用する練習問題です。ヒントだけ載せておきます。</p>
+
+<div class="problem-box">
+<div class="problem-header"><span class="problem-number">第2問</span></div>
+<p>(1) \(x = s + t + 1,\; y = s - t - 1\) （\(s, t \geqq 0\)）の点 \((x, y)\) の動く範囲を図示せよ。</p>
+<p>(2) \(x = st + s - t + 1,\; y = s + t - 1\) （\(s, t\) 実数）の点 \((x, y)\) の動く範囲を図示せよ。</p>
+</div>
+
+<div class="commentary">
+<p><strong>ヒント</strong>　「点 \((X, Y)\) が動く範囲に入る ⇔ \(\begin{cases}X = s + t + 1\\ Y = s - t - 1\end{cases}\) を満たす \(s, t\;(\geqq 0)\) が存在する」と読みかえます。<br>
+(1) は \(s, t\) について解いて \(s, t \geqq 0\) を <strong>\(X, Y\) の不等式に翻訳</strong>。<br>
+(2) は \(s + t = Y + 1,\; st = X - Y - 2\) のように<strong>対称式に持ち込み、解と係数の関係から実数条件（判別式）</strong>に帰着。</p>
+</div>
+
+<div class="problem-box">
+<div class="problem-header"><span class="problem-number">第4問</span></div>
+<p>実数 \(a, b, c\) が \(a + b + c = 8,\; a^2 + b^2 + c^2 = 32\) を満たすとき、実数 \(c\) の最大値を求めよ。</p>
+</div>
+
+<div class="commentary">
+<p><strong>ヒント</strong>　「\(c = K\) は取りうるか？」を考えます。\(c = K\) を代入すると \(a + b = 8 - K,\; a^2 + b^2 = 32 - K^2\)。<br>
+\(a, b\) は <strong>2 次方程式 \(t^2 - (8-K)t + \dfrac{(8-K)^2 - (32-K^2)}{2} = 0\) の解</strong>。<br>
+これを満たす実数 \(a, b\) が存在する ⇔ <strong>判別式 \(\geqq 0\)</strong>。あとは \(K\) の不等式を解くだけ。</p>
+</div>
+
+<!-- ==================== おわりに ==================== -->
+<h2 id="sec-owari">おわりに</h2>
+
+<div class="commentary">
+<p>逆像法は<strong>「点を 1 個ずつ調べたい」という素朴な気持ち</strong>を、判別式や領域図示の道具を借りて実現する手法です。</p>
+<p>解答だけ眺めると魔法のように見えますが、根本は <span class="important">「具体値で実験 → 同じ手順を \(K\) に流し込む」</span> だけ。<br>
+これからは「<strong>この求め方は逆像だと思えば当たり前だな</strong>」と思えるようになることを目指してください。</p>
+<p>もとになった概念整理は <a href="逆像法_補助教材1.html">補助教材1</a> に、関連する定石は <a href="定石集.html">定石集</a>（§ 1変数関数の最大最小、§ 軌跡領域）にあります。</p>
+</div>
 
 </div>
 </div>
